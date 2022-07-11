@@ -1,9 +1,11 @@
 import './App.css';
+import './components/InfoApi/InfoApi'
+import TakeInfo from './components/InfoApi/InfoApi'
 
 function App() {
   return (
     <div className="App">
-      <h1>Hola</h1>
+      <TakeInfo></TakeInfo>
     </div>
   );
 }
