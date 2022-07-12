@@ -7,11 +7,15 @@
 
 .formulary{
     width: 80%;
+    height: 60vh;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
+    align-items: center;
 }
 
 .select{
-    width: 10%;
+    width: 21%;
+    margin-bottom: 5%
 }
 

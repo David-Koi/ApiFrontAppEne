@@ -5,29 +5,36 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { Button } from '@mui/material';
 
 import './InfoApi.css';
 
+import StartTime from '../DatePicker/StartTime';
+import EndTime from '../DatePicker/EndTime';
+
 export default function TakeInfo(){
 
-    const [value, setValue] = useState(null);
+    const [lang, setLang] = useState();
+    const [category, setCategory] = useState();
+    const [widget, setWidget] = useState();
+
+    const [startTime, setStartTime] = React.useState(new Date());
+    const [endTime, setEndTime] = React.useState(new Date());
 
     const [form, setForm] = useState({
-        category:'',
-        widget:'',
-        startTime:'',
-        endTime:'',
-    });
 
+        lang : '',
+        category : '',
+        widget : '',
+
+    });
+    
+ 
     const handleChange = (e) =>{
 
         const {name, value} = e.target;
-        setForm({...form, [name]: value});
-
+        setForm({...form, [name] : value});
+        console.log(form);
     }
 
     const apiCall = () =>{
@@ -64,8 +71,8 @@ export default function TakeInfo(){
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={value}
-                            name="lang"
+                            value={lang}
+                            name='lang'
                             onChange={handleChange}
                         >
                             <MenuItem value={'es'}>Es</MenuItem>
@@ -80,7 +87,7 @@ export default function TakeInfo(){
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={value}
+                            value={category}
                             name="category"
                             onChange={handleChange}
                         >
@@ -97,20 +104,29 @@ export default function TakeInfo(){
 
                 <FormControl className='select'>
                     <InputLabel id="demo-simple-select-label">Widget</InputLabel>
-                        <Select
+                    <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={value}
-                            name="Widget"
+                            value={widget}
+                            name="widget"
                             onChange={handleChange}
                         >
-                            
+                        
                         {/* TERNARIA BALANCE*/}
 
+                    { form.category === 'balance' ? (
+                        
                             <MenuItem value={'balance-electrico'}>Balance Electrico</MenuItem>
-
+                        
+                    )
+                        :
+                        null  
+                    }         
+                        
                         {/* TERNARIA DEMANDA*/}
 
+                    { form.category === 'demanda' ? (
+                        <>
                             <MenuItem value={'evolucion'}>Evolucion</MenuItem>
                             <MenuItem value={'variacion-componentes'}>Variacion Componentes</MenuItem>
                             <MenuItem value={'variacion-componentes-movil'}>Variacion Componentes Movil</MenuItem>
@@ -134,9 +150,17 @@ export default function TakeInfo(){
                             <MenuItem value={'potencia-maxima-instantanea-variacion'}>Potencia Maxima Instantanea Variacion</MenuItem>
                             <MenuItem value={'potencia-maxima-instantanea-variacion-historico'}>Potencia Maxima Instantanea Variacion Historico</MenuItem>
                             <MenuItem value={'variacion-componentes-anual'}>Variacion Componentes Anual</MenuItem>
+                        </>
+                    )
+                        :
+                        null
+                    }
 
                         {/* TERNARIA GENERACION*/}
+                    
+                    { form.category === 'generacion' ? (
 
+                        <>
                             <MenuItem value={'estructura-generacion'}>Estructura- Gneracion</MenuItem>
                             <MenuItem value={'evolucion-renovable-no-renovable'}>Evolucion Renovable-No Renovable</MenuItem>
                             <MenuItem value={'estructura-renovables'}>Estructura Renovables</MenuItem>
@@ -147,9 +171,17 @@ export default function TakeInfo(){
                             <MenuItem value={'potencia-instalada'}>Potencia Instalada</MenuItem>
                             <MenuItem value={'maxima-renovable-historico'}>Maxima Renovable Historico</MenuItem>
                             <MenuItem value={'maxima-sin-emisiones-historico'}>Maxima sin Emisiones Historico</MenuItem>
+                        </>
+                    )
+                        :
+                        null
+                    }
 
                         {/* TERNARIA Intercambios */}
-
+                    
+                    { form.category === 'intercambios' ? (
+                    
+                        <>
                             <MenuItem value={'francia-frontera'}>Francia frontera</MenuItem>
                             <MenuItem value={'portugal-frontera'}>Portugal frontera</MenuItem>
                             <MenuItem value={'marruecos-frontera'}>Marruecos frontera</MenuItem>
@@ -167,9 +199,16 @@ export default function TakeInfo(){
                             <MenuItem value={'todas-fronteras-fisicos'}>Todas fronteras físicos</MenuItem>
                             <MenuItem value={'frontera-programados'}>Frontera programados</MenuItem>
                             <MenuItem value={'todas-fronteras-programados'}>Todas fronteras-programados</MenuItem>
-
+                        </>
+                    )
+                        :
+                        null
+                    }    
+                    
                         {/* TERNARIA Transporte */}
 
+                    { form.category === 'transporte' ? (    
+                        <>
                             <MenuItem value={'energia-no-suministrada-ens'}>Energía no suministrada ens</MenuItem>
                             <MenuItem value={'tindice-indisponibilidad'}>Indice indisponibilida</MenuItem>
                             <MenuItem value={'tiempo-interrupcion-medio-tim'}>Tiempo interrupcion medio tim</MenuItem>
@@ -178,9 +217,16 @@ export default function TakeInfo(){
                             <MenuItem value={'numero-cortes'}>Número de cortes</MenuItem>
                             <MenuItem value={'ens-tim'}>Ens tim</MenuItem>
                             <MenuItem value={'indice-disponibilidad-total'}>Indice disponibilidad total</MenuItem>
+                        </>
+                    )
+                        :
+                        null
+                    }
 
                         {/* TERNARIA mercados */}
-
+                    
+                    { form.category === 'mercados' ? (
+                        <>
                             <MenuItem value={'componentes-precio-energia-cierre-desglose'}>Componentes precio energía cierre desglose</MenuItem>
                             <MenuItem value={'componentes-precio'}>Componentes precio</MenuItem>
                             <MenuItem value={'energia-gestionada-servicios-ajuste'}>Energía gestionada servicios ajuste</MenuItem>
@@ -197,37 +243,20 @@ export default function TakeInfo(){
                             <MenuItem value={'energia-precios-ponderados-gestion-desvios-before'}>Energia precios ponderados gestion desvios before</MenuItem>
                             <MenuItem value={'energia-precios-ponderados-gestion-desvios'}>Energía precios ponderados gestion desvíos</MenuItem>
                             <MenuItem value={'energia-precios-ponderados-gestion-desvios-after'}>Energía precios ponderados gestión desvios after</MenuItem>
-                        </Select>
+                        </>
+                    )
+                        :
+                        null
+                    }
+                    </Select>
                 </FormControl>
 
-        {/* FORM START TIME */}
+                <StartTime startTime={startTime} setStartTime={setStartTime}></StartTime>
 
-                <LocalizationProvider dateAdapter={AdapterMoment}>
-                    <DateTimePicker
-                        renderInput={(props) => <TextField {...props} />}
-                        name="startTime"
-                        value={value}
-                        onChange={(newValue) => {
-                            setValue(newValue);
-                            }}
-                    />
-                </LocalizationProvider>
-
-        {/* FORM END TIME */}
-
-                <LocalizationProvider dateAdapter={AdapterMoment}>
-                    <DateTimePicker
-                        renderInput={(props) => <TextField {...props} />}
-                        name="endTime"
-                        value={value}
-                        onChange={(newValue) => {
-                        setValue(newValue);
-                        }}
-                    />
-                </LocalizationProvider>
-
+                <EndTime endTime={endTime} setEndTime={setEndTime}></EndTime>
             </div>
             
+                <Button>Consult</Button>
         </div>
 
     );
