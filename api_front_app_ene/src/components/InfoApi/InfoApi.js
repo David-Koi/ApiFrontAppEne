@@ -1,7 +1,8 @@
-import React, { useState} from 'react';
+import React, { useState, useContext} from 'react';
 import axios from 'axios';
 import { Routes, Route, useNavigate} from "react-router-dom";
-import Diagrams from '../Diagrams/Diagrams';
+
+import { ResCtx } from '../../context/ResContext';
 
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -19,11 +20,16 @@ mercados} from '../../utils/seriesMenu';
 import { stringTime, consultString } from '../../utils/consult';
 
 
-export default function TakeInfo( {apiRes} ){
+export default function TakeInfo(){
 
     const [lang, setLang] = useState();
     const [category, setCategory] = useState();
     const [widget, setWidget] = useState();
+
+    const ctx = useContext(ResCtx);
+    const {apiRes, setApiRes} = ctx;
+
+    console.log(apiRes)
 
     const [startTime, setStartTime] = React.useState(new Date());
     const [endTime, setEndTime] = React.useState(new Date());
@@ -56,7 +62,7 @@ export default function TakeInfo( {apiRes} ){
 
             .then((res)=>{
 
-                apiRes = res.data;
+                setApiRes(res.data);
                 console.log(apiRes);
             })
 
@@ -87,11 +93,10 @@ export default function TakeInfo( {apiRes} ){
     return(
 
         <div className='mainDiv'>
-            <h1>InfoApi</h1>
-            <button onClick={apiCall}>Test</button>
+            <h1>Consult Formulary</h1>
 
             <div className='formulary'>
-                <FormControl className='select'>
+                <FormControl id={'F1'} className='select'>
                     <InputLabel id="demo-simple-select-label">Lang</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
@@ -107,7 +112,7 @@ export default function TakeInfo( {apiRes} ){
 
         {/* FORM CATEGORY */}
 
-                <FormControl className='select'>
+                <FormControl id={'F2'} className='select'>
                     <InputLabel id="demo-simple-select-label">Category</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
@@ -129,7 +134,7 @@ export default function TakeInfo( {apiRes} ){
 
         {/* FORM WIDGETS */}
 
-                <FormControl className='select'>
+                <FormControl id={'F3'} className='select'>
                     <InputLabel id="demo-simple-select-label">Widget</InputLabel>
                     <Select
                             labelId="demo-simple-select-label"
@@ -211,9 +216,8 @@ export default function TakeInfo( {apiRes} ){
                 </StartTime>
                 <EndTime endTime={endTime} setEndTime={setEndTime}></EndTime>
             </div>
-                <Button onClick={consult}>Consult</Button>
+                <Button className='consult' onClick={consult}>Consult</Button>
 
-                <Diagrams apiRes = {apiRes}></Diagrams>
         </div>
 
     );

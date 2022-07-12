@@ -1,4 +1,5 @@
 .mainDiv{
+    height: 60vh;
     flex-direction: column;
     display: flex;
     align-items: center;
@@ -6,16 +7,28 @@
 }
 
 .formulary{
-    width: 80%;
-    height: 60vh;
+    width: 100%;
+    height: 30%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
 }
 
 .select{
-    width: 21%;
+    width:20%;
     margin-bottom: 5%
 }
+
+#F1{
+    width: 5%;
+}
+
+#F2{
+    width: 10%;
+}
+
+#F3{
+    width: 25%;
+}
+
 

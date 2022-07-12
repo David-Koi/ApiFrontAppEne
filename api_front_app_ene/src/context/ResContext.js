@@ -1,10 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 
 export const ResCtx = React.createContext();
 
 export default function ResContext({children}){
 
-    let apiRes;
+    const [apiRes, setApiRes] = useState();
 
-    return <ResCtx.Provider value={apiRes}>{children}</ResCtx.Provider>;
+    const apiResCtx = {
+        apiRes,
+        setApiRes,
+    }
+
+    return <ResCtx.Provider value={apiResCtx}>{children}</ResCtx.Provider>;
 }
