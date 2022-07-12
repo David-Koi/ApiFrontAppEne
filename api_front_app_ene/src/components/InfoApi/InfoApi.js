@@ -1,11 +1,13 @@
-import React, {useEffect, useState, handleChange} from 'react';
+import React, { useState} from 'react';
 import axios from 'axios';
+import { Routes, Route, useNavigate} from "react-router-dom";
+import Diagrams from '../Diagrams/Diagrams';
 
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import { Button } from '@mui/material';
+import { Button, Link } from '@mui/material';
 
 import './InfoApi.css';
 
@@ -17,7 +19,7 @@ mercados} from '../../utils/seriesMenu';
 import { stringTime, consultString } from '../../utils/consult';
 
 
-export default function TakeInfo(){
+export default function TakeInfo( {apiRes} ){
 
     const [lang, setLang] = useState();
     const [category, setCategory] = useState();
@@ -42,7 +44,7 @@ export default function TakeInfo(){
         
     }
 
-    const apiCall = () =>{
+    const apiCall = (props) =>{
 
             // GET /{lang}/datos/{category}/{widget}?[query]
 
@@ -50,11 +52,12 @@ export default function TakeInfo(){
 
         axios
             // .get('https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00:00&end_date=2019-01-31T23:59&time_trunc=day')
-            .get('https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2022-06-01T12:00&end_date=2022-06-30T23:59&time_trunc=day')
+            .get(props)
 
             .then((res)=>{
 
-                console.log(res.data);
+                apiRes = res.data;
+                console.log(apiRes);
             })
 
             .catch((error)=>{
@@ -75,8 +78,9 @@ export default function TakeInfo(){
             endTime : time2
         });
 
-        consultString(form);
+       let consult = consultString(form);
 
+       apiCall(consult);
             
     };
 
@@ -208,6 +212,8 @@ export default function TakeInfo(){
                 <EndTime endTime={endTime} setEndTime={setEndTime}></EndTime>
             </div>
                 <Button onClick={consult}>Consult</Button>
+
+                <Diagrams apiRes = {apiRes}></Diagrams>
         </div>
 
     );

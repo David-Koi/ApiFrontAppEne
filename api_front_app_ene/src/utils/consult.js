@@ -16,14 +16,16 @@ export const consultString = (props) =>{
 
     const {lang, category, widget, startTime, endTime } = props;
 
-    console.log(lang)
-    console.log(category)
-    console.log(widget)
-    console.log(startTime)
-    console.log(endTime)
+        console.log(lang)
+        console.log(category)
+        console.log(widget)
+        console.log(startTime)
+        console.log(endTime)
 
     let consult = `https://apidatos.ree.es/${lang}/datos/${category}/${widget}?start_date=${startTime}&end_date=${endTime}&time_trunc=day`;
 
-    console.log(consult);
+        console.log(consult);
+
+    return consult;
 
 };
