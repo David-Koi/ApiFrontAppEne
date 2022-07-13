@@ -1,34 +1,75 @@
 .mainDiv{
-    height: 60vh;
+    height: 80vh;
+    width: 100%;
     flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
+.title{
+    color: white;
+    font-size:3em;
+    font-weight: 100;
+    
+}
 .formulary{
     width: 100%;
     height: 30%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
+    
 }
+
+/* @media (max-width:600px) {
+    
+    .formulary{
+        display: flex;
+        width: 100%;
+        height: 90%;
+        justify-content: space-evenly;
+        flex-direction: column !important;
+        background-color: aquamarine;
+        align-items: center; 
+    }
+} */
 
 .select{
-    width:20%;
-    margin-bottom: 5%
+    width: 100%;
+    margin-bottom: 0.5% !important;
+   /* margin-left: 1% !important; */
+    /* margin-bottom: 2% !important; */
 }
 
-#F1{
-    width: 5%;
+.consult{
+    margin-top: 5% !important;
+    /* background-color:transparent !important; */
+    color: rgb(122, 120, 120) !important;
+    border: 1px solid rgb(122, 120, 120) !important;
+}
+
+@media(max-width: 1200px){
+
+    .consult{
+        margin-top: 20% !important;
+    }
+
+}
+
+/* #F1{
+    width: 60%;
 }
 
 #F2{
-    width: 10%;
+    width: 60%;
 }
 
 #F3{
-    width: 25%;
-}
+    width: 60%;
+} */
+
+/* RESPONSIVE */
+
+
 
 

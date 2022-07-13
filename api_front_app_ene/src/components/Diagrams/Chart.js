@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
 
-class App extends Component {
+class App extends Component{
   constructor(props) {
     super(props);
     console.log(props);
@@ -23,17 +23,18 @@ class App extends Component {
       ]
     };
   }
-
+  
   render() {
     return (
       <div className="app">
         <div className="row">
           <div className="mixed-chart">
+            {console.log('allé voy')}
             <Chart
               options={this.state.options}
               series={this.state.series}
               type="bar"
-              width="800"
+              width="1000"
             />
           </div>
         </div>

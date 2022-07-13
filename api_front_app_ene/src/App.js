@@ -9,8 +9,12 @@ function App() {
   return (
     <ResContext>
       <div className="App">
-          <TakeInfo></TakeInfo>
-          <Diagrams></Diagrams>
+          <div className='first'>
+            <TakeInfo></TakeInfo>
+          </div>
+          <div className='second'>
+            <Diagrams></Diagrams>
+          </div>
       </div>
     </ResContext>
   );
