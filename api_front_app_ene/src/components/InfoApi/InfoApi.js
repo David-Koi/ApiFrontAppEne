@@ -9,6 +9,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { Button, Link } from '@mui/material';
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box';
 
 import './InfoApi.css';
 
@@ -92,133 +94,143 @@ export default function TakeInfo(){
 
     return(
 
-        <div className='mainDiv'>
-            <h1>Consult Formulary</h1>
+        <Box className='mainDiv'>
+            <h1 className='title'>Renewable Energy Report </h1>
 
-            <div className='formulary'>
-                <FormControl id={'F1'} className='select'>
-                    <InputLabel id="demo-simple-select-label">Lang</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={lang}
-                            name='lang'
-                            onChange={handleChange}
-                        >
-                            <MenuItem value={'es'}>Es</MenuItem>
-                            <MenuItem value={'en'}>En</MenuItem>
-                        </Select>
-                </FormControl>
+            <Grid container spacing={0} className='formulary'>
+
+                <Grid item  xs={7.2} lg={1}>
+                    <FormControl id={'F1'} className='select'>
+                        <InputLabel id="demo-simple-select-label">Lang</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={lang}
+                                name='lang'
+                                onChange={handleChange}
+                            >
+                                <MenuItem value={'es'}>Es</MenuItem>
+                                <MenuItem value={'en'}>En</MenuItem>
+                            </Select>
+                    </FormControl>
+                </Grid>
 
         {/* FORM CATEGORY */}
+                <Grid item xs={7.2} lg={2} >
+                    <FormControl id={'F2'} className='select'>
+                        <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={category}
+                                name="category"
+                                onChange={handleChange}
+                            >
+                                { categories.map((element, index) =>{
 
-                <FormControl id={'F2'} className='select'>
-                    <InputLabel id="demo-simple-select-label">Category</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={category}
-                            name="category"
-                            onChange={handleChange}
-                        >
-                            { categories.map((element, index) =>{
+                                    return(
+                                        <MenuItem key={index} value={element.value}>
+                                        {element.text}</MenuItem>
+                                    )
+                                })}
 
-                                return(
-                                    <MenuItem key={index} value={element.value}>
-                                    {element.text}</MenuItem>
-                                )
-                            })}
-
-                        </Select>
-                </FormControl>
-
+                            </Select>
+                    </FormControl>
+                </Grid>                    
         {/* FORM WIDGETS */}
+                <Grid item xs={7.2} lg={3} >                    
+                    <FormControl id={'F3'} className='select'>
+                        <InputLabel id="demo-simple-select-label">Widget</InputLabel>
+                        <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={widget}
+                                name="widget"
+                                onChange={handleChange}
+                            >
+                        
+                            { form.category === 'balance' && (
 
-                <FormControl id={'F3'} className='select'>
-                    <InputLabel id="demo-simple-select-label">Widget</InputLabel>
-                    <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={widget}
-                            name="widget"
-                            onChange={handleChange}
-                        >
-                       
-                        { form.category === 'balance' && (
+                                balance.map((element, index) =>{
 
-                            balance.map((element, index) =>{
+                                    return(
+                                        <MenuItem key={index} value={element.value}>
+                                            {element.text}</MenuItem>
+                                    )
+                                })
+                            )}
 
-                                return(
-                                    <MenuItem key={index} value={element.value}>
-                                        {element.text}</MenuItem>
-                                )
-                            })
-                        )}
+                            { form.category === 'demanda' && (
 
-                        { form.category === 'demanda' && (
+                                demanda.map((element, index) =>{
 
-                            demanda.map((element, index) =>{
+                                    return(
+                                        <MenuItem key={index} value={element.value}>
+                                            {element.text}</MenuItem>
+                                    )
+                                })
+                            )}
 
-                                return(
-                                    <MenuItem key={index} value={element.value}>
-                                        {element.text}</MenuItem>
-                                )
-                            })
-                        )}
+                            { form.category === 'generacion' && (
 
-                        { form.category === 'generacion' && (
+                                generacion.map((element, index) =>{
 
-                            generacion.map((element, index) =>{
+                                    return(
+                                        <MenuItem key={index} value={element.value}>
+                                            {element.text}</MenuItem>
+                                    )
+                                })
+                            )}
 
-                                return(
-                                    <MenuItem key={index} value={element.value}>
-                                        {element.text}</MenuItem>
-                                )
-                            })
-                        )}
+                            { form.category === 'intercambios' && (
 
-                        { form.category === 'intercambios' && (
+                                intercambios.map((element, index) =>{
 
-                            intercambios.map((element, index) =>{
+                                    return(
+                                        <MenuItem key={index} value={element.value}>
+                                            {element.text}</MenuItem>  
+                                    )
+                                })
+                            )}
 
-                                return(
-                                    <MenuItem key={index} value={element.value}>
-                                        {element.text}</MenuItem>  
-                                )
-                            })
-                        )}
+                            { form.category === 'transporte' && (
 
-                        { form.category === 'transporte' && (
+                                transporte.map((element, index) =>{
 
-                            transporte.map((element, index) =>{
+                                    return(
+                                        <MenuItem key={index} value={element.value}>
+                                            {element.text}</MenuItem>
+                                    )
+                                })
+                            )}
 
-                                return(
-                                    <MenuItem key={index} value={element.value}>
-                                        {element.text}</MenuItem>
-                                )
-                            })
-                        )}
+                            { form.category === 'mercados' && (
 
-                        { form.category === 'mercados' && (
+                                mercados.map((element, index) =>{
 
-                            mercados.map((element, index) =>{
+                                    return(
+                                        <MenuItem key={index} value={element.value}>
+                                            {element.text}</MenuItem> 
+                                    )
+                                })
+                            )}
+                        </Select>
+                    </FormControl>
+                </Grid> 
 
-                                return(
-                                    <MenuItem key={index} value={element.value}>
-                                        {element.text}</MenuItem> 
-                                )
-                            })
-                        )}
-                    </Select>
-                </FormControl>
+                <Grid item xs={7.2} lg={1.5} className='select' >                
+                    <StartTime startTime={startTime} setStartTime={setStartTime}>
+                    </StartTime>
+                </Grid>
+                <Grid item xs={7.2} lg={1.5} className='select'>
+                    <EndTime endTime={endTime} setEndTime={setEndTime}></EndTime>
+                </Grid>
+            </Grid>
 
-                <StartTime startTime={startTime} setStartTime={setStartTime}>
-                </StartTime>
-                <EndTime endTime={endTime} setEndTime={setEndTime}></EndTime>
-            </div>
-                <Button className='consult' onClick={consult}>Consult</Button>
+            <Button className='consult' onClick={consult}>Submit</Button>
 
-        </div>
+        </Box>
+        
 
     );
 };

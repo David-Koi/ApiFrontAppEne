@@ -2,10 +2,10 @@ import React, { useContext, useState} from 'react';
 import ReactDOM from 'react-dom';
 import { ResCtx } from '../../context/ResContext';
 
-import { Button } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 
 import App from './Chart';
-import { digger } from '../../utils/resDistribute'
+import { hydraulicDigger, windDigger, solarDigger  } from '../../utils/resDistribute'
 
 import './Diagrams.css'
 
@@ -13,17 +13,48 @@ export default function Diagrams(){
 
     const ctx = useContext(ResCtx);
     const {  apiRes, setApiRes } = ctx;
+    const [paco, setPaco] = useState(`allé voy`);
 
     const hydraulicReport = () =>{
 
-        const data = digger(apiRes);
+        const data = hydraulicDigger(apiRes);
 
         const root = ReactDOM.createRoot(
             document.getElementById('view')
         );
         const element = 
             <>
-                <App apiRes={data}></App>
+                <App apiRes={data} paco={paco}></App>
+            </>
+        root.render(element);
+
+    };
+    
+    const windReport = () =>{
+
+        const data = windDigger(apiRes);
+
+        const root = ReactDOM.createRoot(
+            document.getElementById('view')
+        );
+        const element = 
+            <>
+                <App apiRes={data} paco={paco}></App>
+            </>
+        root.render(element);
+
+    };
+
+    const SolarReport = () =>{
+
+        const data = solarDigger(apiRes);
+
+        const root = ReactDOM.createRoot(
+            document.getElementById('view')
+        );
+        const element = 
+            <>
+                <App apiRes={data} paco={paco}></App>
             </>
         root.render(element);
 
@@ -32,9 +63,23 @@ export default function Diagrams(){
     return(
 
         <div className='mainDiagram'>
-            <h1>Diagram</h1>
-            <Button onClick={hydraulicReport}>Hydraulic monthly report
-            </Button>
+
+            <h1 className='diagramTitle'>Diagrams</h1>
+
+            <Grid container spacing={2} className='buttonGrid'>
+                <Grid item xs={12} lg={2} >
+                    <Button className='buttons' onClick={hydraulicReport}>Hydraulic report
+                    </Button>
+                </Grid>
+                <Grid item xs={12} lg={2} >
+                    <Button className='buttons' onClick={SolarReport}>Solar report
+                    </Button>
+                </Grid>
+                <Grid item xs={12} lg={2} >
+                    <Button className='buttons' onClick={windReport}>Wind report
+                    </Button>
+                </Grid>
+            </Grid>
             <div id='view'></div>
 
         </div>
