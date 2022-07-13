@@ -23,7 +23,7 @@ export default function Diagrams(){
         );
         const element = 
             <>
-                <App apiRes={data} paco={paco}></App>
+                <App apiRes={data}></App>
             </>
         root.render(element);
 
@@ -38,7 +38,7 @@ export default function Diagrams(){
         );
         const element = 
             <>
-                <App apiRes={data} paco={paco}></App>
+                <App apiRes={data}></App>
             </>
         root.render(element);
 
@@ -53,7 +53,7 @@ export default function Diagrams(){
         );
         const element = 
             <>
-                <App apiRes={data} paco={paco}></App>
+                <App apiRes={data}></App>
             </>
         root.render(element);
 
