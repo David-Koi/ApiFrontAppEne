@@ -30,7 +30,7 @@ Instructions to visualize the chart:
     - Choose the renewable kind of energie you want check it
       (hydraulic, wind or solar) and press the corresponding button. 
 
-The little project has been made by REACT, JavaScript and MATERIAL UI. I used some libraries also, like 'MOMENT'.
+The little project has been made by REACT, JavaScript and MATERIAL UI. I used some libraries also, like 'MOMENT' and 'REACT APEX CHART'.
 
 I will be grateful for any constructive comments.
 
