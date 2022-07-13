@@ -13,7 +13,6 @@ export default function Diagrams(){
 
     const ctx = useContext(ResCtx);
     const {  apiRes, setApiRes } = ctx;
-    const [paco, setPaco] = useState(`allé voy`);
 
     const hydraulicReport = () =>{
 
