@@ -14,7 +14,7 @@ Intructions to execute:
 
 Instructions to submit the formulary:
 
-    - The project is prepare for now to show you a 30 day period, about the       
+    - The project is prepare for now to show you a 30 day period or less, about the       
       renewable energies.
     - Select 'Es' in the 'Lang' input.
     - Select 'Balance' in the 'Category' input.
